@@ -20,6 +20,9 @@ HTTP
 
 - Hypertext transfer protocol
 - Specifies how client machines request information or take actions from servers
+- HTTP is a pretty simple plaintext protocol
+- netcat (nc) can set up a TCP connection to the destination server and send a HTTP request for you
+- HTTP/2 is the next version of HTTP
 - All data is in packets, series of bits split into sections (headers)
 - For a GET request to a website you need to do the following:
   - Get the IP address from the DNS server (104.28.7.94)
@@ -44,21 +47,81 @@ Sockets
 - Your server codes does now know how to do TCP
 - You ask your OS for a socket and then connect the socket to an IP address and port
 - You write to the socket to send data
-- Four common socket types: 
+- Four common socket types: TCP, UDP, raw (lets you send ICMP packets), unix (in order to talk to programs on the same computer)
 
 TCP
 
+- When you send a packet on the internet sometimes it gets lost
+- TCP lets you send a stream of data reliability even if packets get lost or sent in the wrong order
+- TCP header has: source port, destination port, sequence number, acknowledgement number, checksum, window, etc.
+- Every TCP connection starts with a handshake, if "connection refused" or "connection timeout" it means the handshake did not finish.
 
-  
 HTTP Headers
 
-DOM
+- User-Agent: check if you're a bot or what browser you're using
+- Host: tell the server which website you want them to serve to you
+- Accept-Encoding: server might compress response if you set this to gzip if you want to save bandwidth
+- Cookie: data to let the server know that you're logged in
 
-Cookies
+SSL/TLS
 
-Same Origin Policy
+- SSL encrypts your packets
+- TLS is the newer version
+- HTTPS is HTTP over SSL/TLS
 
 HTTP Methods
 
-CORS
+- GET: tell the server it wants information about something identified in the uri
+  - not permitted to have request bodies 
+  - You have the URI query string available to you if you need to send additional data to the server
+- POST: add an entity as a child of an object identified in the URI
+  - data is submitted to server in request body
 
+DOM
+
+- You use JavaScript to manipulate the DOM
+- It is a document with a logical tree
+- Each branch contains a node, and each node contains objects
+- DOM API allows programmatic access to the tree
+- It allows you to change the documents structure, style, or content
+- Nodes also have event handlers attached to them; once an event is triggered, the event handlers get executed
+- https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+- API for HTML/XML documents
+- W3C dom standard implemented in most browsers; many browsers extend the standard
+- HTML page = DOM + JS
+- DOM designed to be independent of any programming language
+- an HTML element is a node in a tree of nodes as far as the DOM is concerned
+
+Cookies
+
+- authentication cookies tell the server that someone is logged in
+- they are "automatically" sent with any request you make to the server
+- it is possible for a script to execute client side to get access to your client side cookies
+
+Same Origin Policy
+
+- Restricts how a document or script loaded from one origin can interact with a resource from another origin
+- An origin for web content is defined by scheme (protocol), host (domain), and port of the URL used to access it.
+- Some operations are restricted to same-origin content and this restriction can be lifted using CORs.
+
+Cross-Origin Resource Sharing (CORS)
+
+- Cross domain requests are forbidden by default by the same origin policy.
+- CORs gives web servers cross-domain access controls in order to enable cross domain data transfer.
+- only allowing certain origins to edit data on the server
+- If you make the request server side you can bypass CORS, but then it wouldn't be able to access your cookies; need to execute script client side to get the cookie
+
+Content Security Policy
+
+- Way to mitigate Cross Site Scripting, XSS (injecting JavaScript into client side code) and data injection attacks
+- content-security-policy has multiple directives (default-src, script-src, style-src, connect-src)
+- To enable CSP, you need to configure your server to add content-security-policy in response header (X-Content-Security-Policy is the older one)
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
+
+HTTP Strict-Transport-Security (HSTS)
+
+- HSTS is a specification
+- HTTP Strict Transport Security lets a web site inform the browser that it should never load the site using HTTP and should automatically convert all attempts to access the site using HTTP to HTTPS requests instead.
+- It consists of one response header set by the server: Strict-Transport-Security
+- max-age: specifies how long a browser should remember to force the user to access a website using HTTPS
