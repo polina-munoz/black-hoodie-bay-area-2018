@@ -24,5 +24,8 @@ Some Prerequisites
 - A basic understanding of HTML, JS
 - A laptop with Burp proxy setup (link https://support.portswigger.net/customer/portal/articles/1783055-configuring-your-browser-to-work-with-burp to setup guide), a community version is sufficient for this course.
 
+Resources:
+
+- So you want to be a security engineer: https://medium.com/@niruragu/so-you-want-to-be-a-security-engineer-d8775976afb7
 
 
