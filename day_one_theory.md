@@ -94,6 +94,14 @@ DOM
 
 Cookies
 
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+- Can be used for:
+  - Session management: login, shopping cart
+  - Personalization: themes
+  - Tracking: analyzing user behavior
+- Server sets Set-Cookie header on response.
+- Browser then stores the cookie client side.
+- It remembers stateful information for a stateless protocol (HTTP)
 - authentication cookies tell the server that someone is logged in
 - they are "automatically" sent with any request you make to the server
 - it is possible for a script to execute client side to get access to your client side cookies
