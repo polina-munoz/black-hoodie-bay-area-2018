@@ -10,3 +10,18 @@ Cross-site request forgery attacks (CSRF)
 - Rails compares the token from the page with the token from the session cookie to ensure that they match
 - Request can send the CSRF token via the X-CSRF-Token header
 
+SQL injection (SQLi)
+
+- SQL is inserted into forms
+- Allows you to bypass login, retrieve sensitive information, modify/delete data
+
+Command Injection
+
+Broken Session Management
+
+Insecure Direct Object Reference
+
+Missing function access control
+
+Logic Errors
+
