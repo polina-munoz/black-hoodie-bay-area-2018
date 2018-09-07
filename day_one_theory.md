@@ -187,6 +187,7 @@ Cross-Origin Resource Sharing (CORS)
 - Try Cors: http://test-cors.com/
 - Mozilla has really good documentation on CORs: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 - Anything that is produced by a FORM is going to complicated and require a preflight request.
+- Example: Google flights pulling in flight data on other sites: can only do this using CORS
 
 Content Security Policy
 
