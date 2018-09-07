@@ -2,6 +2,7 @@
 
 Cross-site request forgery attacks (CSRF)
 
+- a user issues a request without intent and it causes undesirable change (logout, delete account, change password)
 - one click attack, session riding
 - exploits the trust that a server has in a client
 - it allows malicious user to spoof legitimate requests to the server, pretending to be an authenticated user
@@ -9,6 +10,10 @@ Cross-site request forgery attacks (CSRF)
 - When a user makes a POST request, CSRF from the HTML gets sent in that request
 - Rails compares the token from the page with the token from the session cookie to ensure that they match
 - Request can send the CSRF token via the X-CSRF-Token header
+
+```
+<iframe src="https://someothersite.com/logout.php"></iframe>
+```
 
 SQL injection (SQLi)
 
