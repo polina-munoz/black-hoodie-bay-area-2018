@@ -10,10 +10,17 @@ Cross-site request forgery attacks (CSRF)
 - When a user makes a POST request, CSRF from the HTML gets sent in that request
 - Rails compares the token from the page with the token from the session cookie to ensure that they match
 - Request can send the CSRF token via the X-CSRF-Token header
-
+- Script kitties: you just need to pull in a payload and execute it and see if you can break in
+- What to look for interesting CSRF attacks:
+  - authenticated user (anonymous csrf is generally uninteresting)
+  - no hard to predict values (large random session identifier)
+  - it should change something
+  
 ```
 <iframe src="https://someothersite.com/logout.php"></iframe>
 ```
+
+Example of CSRF attack (session riding): https://jsfiddle.net/dg1t0sa4/15/
 
 SQL injection (SQLi)
 
