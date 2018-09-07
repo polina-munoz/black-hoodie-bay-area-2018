@@ -89,3 +89,15 @@ Similar to SQL injection, but in a shell command.
 - Content-Type header, X-Content-Type-Options: nosniff
 - You could also treat the content as an attachment and download it as a file
 
+## Broken Session Management
+
+- if session identifiers are predictable, attackers can take over user sessions
+- if an attacker can force a user to use a session they provide, it might also peak information to attacker
+  - make a user log into their session
+  - "session fixation" 
+  - forcing someone else to go into your session
+- generating session tokens
+  - do not use sequential number, use long enough random number
+  - username as token --> obviously predictable
+  - MD5(username), same thing
+  
