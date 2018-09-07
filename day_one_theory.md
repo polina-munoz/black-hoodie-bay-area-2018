@@ -16,8 +16,17 @@ CIA Model
   - Failover
   - Use firewalls or proxy servers to guard against downtime and unreachable data due to Denial of Service (DoS) attacks
 
+Web in general
+
+- to some extent you can baseline truth and build something off experience: not with the web!
+- the concepts is what you need to stick to, not the technology
+- stick to the concepts, understand the nuances in depth. you will start reading RFCs
+
 HTTP
 
+- HTTP is on port 80: HTTPS is 443
+- www.example.org is not the same as example.org (different domain)
+- Origin requires same domain, port, and protocol
 - Hypertext transfer protocol
 - Specifies how client machines request information or take actions from servers
 - HTTP is a pretty simple plaintext protocol
@@ -40,6 +49,7 @@ DNS
 - The DNS request/response are usually UDP packets.
 - 8.8.8.8 is Google's DNS server
 - There are recursive DNS servers and authoritative DNS servers
+- Example: 
 
 Sockets
 
@@ -58,10 +68,40 @@ TCP
 
 HTTP Headers
 
+- Every browser interprets and enforces HTTP headers in nuanced ways.
 - User-Agent: check if you're a bot or what browser you're using
 - Host: tell the server which website you want them to serve to you
+  - this happens when you host multiple domains on the same IP address
+  - It's the only required HTTP headers
+  - Security: if you have no host header, you will get denied
+  - If you have an invalid host header, it will default to the first virtual host in the list 
+  - You can change the host header through Burp
+  - It's unsafe for the application to trust the host header
+  - Case Study: Password reset emails
+    - "I want to make my password resets generic so it can be used by all of them"
+    - Password reset links are going to come with a one time token
+    - attackers can make the pw reset request for someone else and if the server trusts that host header and uses that it can give the pw token to the attacker. Security people will mouse over the links but if you don't it's a problem.
+  - Case Study: 10k Host Header: https://www.theregister.co.uk/2017/08/10/schoolboy_google_bug_bounty_http_host/
 - Accept-Encoding: server might compress response if you set this to gzip if you want to save bandwidth
 - Cookie: data to let the server know that you're logged in
+- Origin Header:
+  - added by the browser
+  - cannot be altered (you can change it if you have Burp)
+  - This is added to cross origin requests
+- Referer
+  - intentionally spelled incorrectly
+  - contains previous page you were on
+  - contains URI of the page that requested the resource
+  - it's great for tracking how users found out about your website
+  - Security ppl have a problem with the referer header
+  - You don't want the referer header to leek the token
+  - Privacy perspective: you don't want to leek this info
+- Referrer-Policy header
+  - only FireFox and Chrome support it
+  - certain extensions might help you drop referer headers
+  - tor browser; helps prevent fingerprinting
+  - ex. amazon referred links
+  - take a look at the metatag
 
 SSL/TLS
 
@@ -72,10 +112,20 @@ SSL/TLS
 HTTP Methods
 
 - GET: tell the server it wants information about something identified in the uri
+  - do not use for state changing actions --> it can be cached, parameters will be logged in browser history/proxies
+  - not recommended for sensitive data (bc it can be cached and viewed by proxies etc)
+  - It can also be leaked by HTTP headers through other websites
   - not permitted to have request bodies 
   - You have the URI query string available to you if you need to send additional data to the server
 - POST: add an entity as a child of an object identified in the URI
+  - used for state changing actions
+  - not cached, logged in browser history
+  - safe for handling sensitive data
   - data is submitted to server in request body
+- Status codes:
+  - for security, the most interesting one is 500s, when you stumble across it
+- Options: CORs will send a preflight options request
+
 
 DOM
 
@@ -105,15 +155,25 @@ Cookies
 - authentication cookies tell the server that someone is logged in
 - they are "automatically" sent with any request you make to the server
 - it is possible for a script to execute client side to get access to your client side cookies
+- cookie vs localstorage
+- You can set "secure flag" so it's only sent over HTTPs.
 
 Same Origin Policy
 
+- simple but nuanced: origin needs to have the same domain, port, and protocol
+- Most important part of web security foundational knowledge
+- Pages can only "interact" with other resources having the same "origin"
+  - read contents on pages
+  - manipulate the DOM
+  - send XMLHttpRequest
+- HTML5 has added new rules to this and made it more complicated.
 - Restricts how a document or script loaded from one origin can interact with a resource from another origin
 - An origin for web content is defined by scheme (protocol), host (domain), and port of the URL used to access it.
 - Some operations are restricted to same-origin content and this restriction can be lifted using CORs.
 
 Cross-Origin Resource Sharing (CORS)
 
+- Cookie headers (set-cookie) have a flag to prevent them from being sent across origin. 
 - Cross domain requests are forbidden by default by the same origin policy.
 - CORs gives web servers cross-domain access controls in order to enable cross domain data transfer.
 - only allowing certain origins to edit data on the server
