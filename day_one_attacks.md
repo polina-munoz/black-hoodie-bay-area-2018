@@ -69,17 +69,11 @@ password = 1234' or 1==1; --
 query= "select * from users where id=1; DROP TABLE users"
 ```
 
-Command Injection
+## Command Injection
 
-Broken Session Management
+Similar to SQL injection, but in a shell command.
 
-Insecure Direct Object Reference
-
-Missing function access control
-
-Logic Errors
-
-Clickjacking
+## Clickjacking
 
 - like jacking (have ppl hit something but actually they're clicking the like button)
 - New HTTP header called X-Frame-Options specifies whether or not a page can be framed with <iframe> or similar tags
@@ -87,7 +81,7 @@ Clickjacking
 - SAMEORIGIN has different behavior in Safari. Only the top level origin is checked (intermediate frames are ignored)
 - I imagine Stripe needs to take this into consideration in order to do Stripe Elements (iframes)
 
-Content Sniffing
+## Content Sniffing
 
 - browsers can perform content sniffing to guess the right MIME type when Content Type isn't set or may have been set incorrectly
 - When user uploaded or generated content is allowed, this is generated
