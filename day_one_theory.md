@@ -178,6 +178,14 @@ Cross-Origin Resource Sharing (CORS)
 - CORs gives web servers cross-domain access controls in order to enable cross domain data transfer.
 - only allowing certain origins to edit data on the server
 - If you make the request server side you can bypass CORS, but then it wouldn't be able to access your cookies; need to execute script client side to get the cookie
+- You want this when you have multiple web servers that want to talk to each other.
+- CORs is done by specifying HTTP headers
+  - you need a preflight OPTIONS request: server will say what it supports
+  - if you do an XMLHTTPRequest, the browser will send a preflight Options request (you don't have to think about it), and CORs will need to be set up by the server. The browser will then cache it.
+- `access-control-allow-origin: *` is not what you want (unless you're google analytics)
+- Try Cors: http://test-cors.com/
+- Mozilla has really good documentation on CORs: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+- Anything that is produced by a FORM is going to complicated and require a preflight request.
 
 Content Security Policy
 
