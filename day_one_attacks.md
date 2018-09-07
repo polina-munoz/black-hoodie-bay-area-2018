@@ -101,3 +101,23 @@ Similar to SQL injection, but in a shell command.
   - username as token --> obviously predictable
   - MD5(username), same thing
   
+## Insecure Direct Object Reference
+
+- are you authenticated AND are you the owner of this account? (authentication and authorization)
+- if you can access random account users by changing the id in the URL
+
+## Missing function access control
+
+- add middleware, decorators
+- need to check access at time of change or data load
+- object-level access control (are the owner of this resource?)
+- authorization should be checked at the time of taking action
+- "hidden" functionality is a frequent source of vulnerabilities
+- many tools exist to find hidden URLs, you can use Burp Suite
+
+## Logic Errors
+
+- ALWAYS DO INPUT VALIDATION
+- input is an integer
+- input is a positive number
+- developers may assume that only authorized users will know the url or it will only be exposed to "internal" networks
