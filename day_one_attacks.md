@@ -1,6 +1,6 @@
 # day one attacks
 
-Cross-site request forgery attacks (CSRF)
+## Cross-site request forgery attacks (CSRF)
 
 - a user issues a request without intent and it causes undesirable change (logout, delete account, change password)
 - one click attack, session riding
@@ -33,10 +33,41 @@ Create a link that goes to some html and in the background this happens in ifram
 <script>document.getElementById("account_update_form").submit()</script>
 ```
 
-SQL injection (SQLi)
+How do you prevent this?
+
+- make it unpredictable: CSRF tokens (recommended approach)
+- are per user
+- should be unpredictable and have a limited lifetime
+- can be set in hidden form fields, HTTP headers
+- token has to be unpredictable with limited lifetime
+  - attacker shouldn't be able to guess it or brute force it
+- header checks: origin/host/referer
+  - you should blog if these headers are nto present
+  - plugins can alter certain HTTP headers
+  - fail closed not open 
+- Double submit cookies (allows microservice infrastructure if you don't want to maintain state between those servers)
+  - used when there is difficulty associating the token to a session
+  - a random value is assigned to the hidden form field and a cookie, compared at server side on submission
+  - attacker cannot change dom/cookies, so this will work 
+
+## SQL injection (SQLi)
 
 - SQL is inserted into forms
 - Allows you to bypass login, retrieve sensitive information, modify/delete data
+- String concatenation and a database query is probably going to bite you if you see this
+- defend against this using a parametrized query
+
+Example:
+
+```
+select user from users where user='${username}' and password='${password}' 
+username = admin
+password = 1234' or 1==1; --
+```
+
+```
+query= "select * from users where id=1; DROP TABLE users"
+```
 
 Command Injection
 
