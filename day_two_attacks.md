@@ -1,7 +1,5 @@
 # day two attacks
 
-Logic Errors
-
 Reflected XSS
 
 Stored XSS
