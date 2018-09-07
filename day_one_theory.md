@@ -160,6 +160,7 @@ Cookies
 
 Same Origin Policy
 
+- you can send requests to other sites but you can't read the response: CORs is for reading the response
 - simple but nuanced: origin needs to have the same domain, port, and protocol
 - Most important part of web security foundational knowledge
 - Pages can only "interact" with other resources having the same "origin"
