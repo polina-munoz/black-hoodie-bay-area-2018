@@ -35,7 +35,7 @@ Stored XSS
 
 DOM XSS
 
-- Ex. `https://453f620f9ff35bb3-dot-mehbanking.appspot.com/main#lang=%3Cscript%3Ealert%28document.cookie%29%3B%3C%2Fscript%3E`
+- Ex. https://453f620f9ff35bb3-dot-mehbanking.appspot.com/main#lang=%3Cscript%3Ealert%28document.cookie%29%3B%3C%2Fscript%3E
 - it can exist in the URL or you can source scripts from other domains
   - CORS does not apply bc you are on the victim's page and sourcing the attacker's script
 - You can use it as a phishing scheme
