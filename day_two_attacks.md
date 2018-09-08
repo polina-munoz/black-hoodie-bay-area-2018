@@ -59,10 +59,34 @@ Where to find XSS
 - If you see user input from another source (user profile), check for stored XSS
 - If you see input taken and displayed without a page load, check for DOM based XSS
 
+XSS Mitigations
+
+- input validation
+- templating systems
+- auto escaping
+- contextually aware
+  - Know if you're in a <script> tag or in the href property to escape appropriately
+- non-contextually aware
+  - more dangerous
+  - jinja2, Django, erb, etc.
+- what kind of XSS can a browser
+- X-XXS-protection helps detect and block reflected XSS
+  - Can additionally have mode=block and report=<report-uri>
+- avoid data sinks like document.write, innerHTML
+
 ## Content Security Policy
+
+- How to mitigate XSS. 
+- When you html escape it, it gets treated as data and that's what you want.
 
 ## Vulnerability chaining
 
-## SSRF
+Use Case:
+
+- If you xss yourself, it's really not that useful 
+- But if you have a csrf allowing the creation of arbitrary entries for other users, that's dangerous
+- Ex. CSRF to deliver the XSS payload. CSRF is a medium issue and XSS is a low risk issue, but looking at it holistically it becomes a much larger issue.
+
+## Server Side Request Forgery (SSRF)
 
 ## XXE
