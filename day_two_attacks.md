@@ -76,8 +76,18 @@ XSS Mitigations
 
 ## Content Security Policy
 
+- It's an HTTP header
+- It looks similar to CORs
 - How to mitigate XSS. 
 - When you html escape it, it gets treated as data and that's what you want.
+- It's not a replacement for careful input validation and output encoding.
+- You can control where resources are being sourced from
+- prevent inline script, code execution through eval
+- can be run in one of two modes -- enforcing, report only
+- directives include: script-src, img-src, style-src, object-src, default-src
+- Whitelists can be bypassed using JSONP endpoints, redirects. But they're hard to maintain.
+- CSP 3: strict-dynamic concept introduced
+
 
 ## Vulnerability chaining
 
@@ -86,6 +96,10 @@ Use Case:
 - If you xss yourself, it's really not that useful 
 - But if you have a csrf allowing the creation of arbitrary entries for other users, that's dangerous
 - Ex. CSRF to deliver the XSS payload. CSRF is a medium issue and XSS is a low risk issue, but looking at it holistically it becomes a much larger issue.
+
+## JSONP
+
+- before CORS/XHR, we had JSONP for cross domain data sharing
 
 ## Server Side Request Forgery (SSRF)
 
