@@ -26,6 +26,7 @@ Reflected XSS
 
 - only valid for the particular user (does not persist in the server side)
 - does not persist in the server; only in that request and response
+- Ex. https://453f620f9ff35bb3-dot-mehbanking.appspot.com/main?message=%3Cscript%3Ealert%28document.cookie%29%3B%3C%2Fscript%3E
 
 Stored XSS
 
