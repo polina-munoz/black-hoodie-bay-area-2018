@@ -58,10 +58,10 @@ Where to find XSS
 - If you see user input from another source (user profile), check for stored XSS
 - If you see input taken and displayed without a page load, check for DOM based XSS
 
-CSP
+## Content Security Policy
 
-Vulnerability chaining
+## Vulnerability chaining
 
-SSRF
+## SSRF
 
-XXE
+## XXE
