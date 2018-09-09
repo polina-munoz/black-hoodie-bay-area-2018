@@ -22,3 +22,19 @@ Main themes:
 - Understanding how our application implements CSRF protection
 - test across browsers
 - leverage security scanners and third party vulnerability checkers
+
+Main attack vectors for web applications:
+
+- Cross Site Scripting (XSS)
+- SQL Injection
+- Denial of Service (DoS)
+- Buffer Overflow (Memory corruption)
+- Cross-site request forgery (CSRF), session riding, broken session management
+- Data breach
+
+Ones that I think are interesting and worth exploring further:
+
+- XSS, all the ways this can go wrong is interesting, and how we properly escape user generated content etc.
+- Taking advantage of sessions (CSRF) and how the server mitigates this
+- Cross origin shenanigans (CORs) and how the server sets this up
+- all of the HTTP headers because there are so many of them, who decides to set them and why? There are so many omg.
