@@ -5,6 +5,7 @@
 - Organizer: Marion, https://twitter.com/pinkflawd
 - Workshop Instructors: Niru Ragupathy, https://twitter.com/itsc0rg1, Jenna Kallaher
 - Banking app: mehbanking [dot] appspot [dot] com 
+- Link to Slides: https://www.slideshare.net/nragupathy/introduction-to-web-application-security-blackhoodie-us-2018
 
 Goal of workshop: Basics of web application security and explore common web attacks. At the end of the course you will have understood the concept, exploited and learnt to fix - XSS, CSRF and SQL injection. You will also get an opportunity to dabble in more esoteric attacks like XXE and SSRF on the second day. 
 
